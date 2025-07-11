@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="duke" class="com.example.demo.domain.Juggler">
+        <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
+    </bean>
+    <bean id="sonet29" class="com.example.demo.domain.Sonet29" />
+    <bean id="poeticDuke" class="com.example.demo.domain.PoeticJuggler">
+        <constructor-arg value="15" />
+        <constructor-arg ref="sonet29" /><!-- внедрение в конструктор класса ссылки на класс sonet29 -->
+    </bean>
+<!--    Создание единичного экземпляра класса Stage с помощью метода factory-method-->
+    <bean id="theStage" class="com.example.demo.domain.Stage" factory-method="getInstance" />
+    <bean id="kenny" class="com.example.demo.domain.Instrumentalist">
+        <property name="song" value="Jingle Bells" /><!-- внедрение значений через свойства -->
+        <property name="instrument" ref="saxophone" />
+    </bean>
+    <bean id="saxophone" class="com.example.demo.domain.Saxophone" />
+    <bean id="guitar" class="com.example.demo.domain.Guitar" />
+    <bean id="hank" class="com.example.demo.domain.OneManBand">
+        <property name="instruments">
+            <list>
+                <ref bean="guitar" />
+                <ref bean="saxophone" />
+            </list>
+        </property>
+    </bean>
+    <bean id="garry" class="com.example.demo.domain.Magician">
+        <property name="magicWords" value="Bippity Boppity Boom"/>
+        <property name="magicBox" ref="magicBox" />
+    </bean>
+    <bean id="magicBox" class="com.example.demo.springidol.MagicBoxImpl">
+        <replaced-method name="getContents" replacer="tigerReplacer" /><!--замена метода-->
+    </bean>
+    <bean id="tigerReplacer" class="com.example.demo.domain.TigerReplacer" />
+</beans>
