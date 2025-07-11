@@ -12,7 +12,7 @@
         <constructor-arg value="15" />
         <constructor-arg ref="sonet29" /><!-- внедрение в конструктор класса ссылки на класс sonet29 -->
     </bean>
-<!--    Создание единичного экземпляра класса Stage с помощью метода factory-method-->
+<!--Создание единичного экземпляра класса Stage с помощью метода factory-method-->
     <bean id="theStage" class="com.example.demo.domain.Stage" factory-method="getInstance" />
     <bean id="kenny" class="com.example.demo.domain.Instrumentalist">
         <property name="song" value="Jingle Bells" /><!-- внедрение значений через свойства -->
