@@ -38,4 +38,12 @@
             </map>
         </property>
     </bean>
+    <bean id="garry" class="com.example.demo.domain.Magician">
+        <property name="magicWords" value="Bippity Boppity Boom"/>
+        <property name="magicBox" ref="magicBox" />
+    </bean>
+    <bean id="magicBox" class="com.example.demo.springidol.MagicBoxImpl">
+        <replaced-method name="getContents" replacer="tigerReplacer" /><!--замена метода-->
+    </bean>
+    <bean id="tigerReplacer" class="com.example.demo.domain.TigerReplacer" />
 </beans>
