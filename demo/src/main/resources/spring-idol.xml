@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="duke" class="com.example.demo.domain.Juggler">
+        <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
+    </bean>
+    <bean id="sonet29" class="com.example.demo.domain.Sonet29" />
+    <bean id="poeticDuke" class="com.example.demo.domain.PoeticJuggler">
+        <constructor-arg value="15" />
+        <constructor-arg ref="sonet29" /><!-- внедрение в конструктор класса ссылки на класс sonet29 -->
+    </bean>
+<!--    Создание единичного экземпляра класса Stage с помощью метода factory-method-->
+    <bean id="theStage" class="com.example.demo.domain.Stage" factory-method="getInstance" />
+    <bean id="kenny" class="com.example.demo.domain.Instrumentalist">
+        <!-- внедрение значений через свойства -->
+        <property name="song" value="Jingle Bells" />
+        <property name="instrument">
+            <!-- объявление бина внутри свойства (по аналогии с внутренним классом)-->
+            <bean class="com.example.demo.domain.Saxophone" />
+        </property>
+    </bean>
+    <bean id="saxophone" class="com.example.demo.domain.Saxophone" />
+    <bean id="guitar" class="com.example.demo.domain.Guitar" />
+    <bean id="hank" class="com.example.demo.domain.OneManBand">
+        <property name="instruments">
+            <!--внедрение в свойство значений в виде списка List-->
+<!--            <list>-->
+<!--                <ref bean="saxophone" />-->
+<!--                <ref bean="guitar" />-->
+<!--            </list>-->
+            <!--внедрение в свойство значений в виде отображения Map-->
+            <map>
+                <entry key="GUITAR" value-ref="guitar" />
+                <entry key="SAXOPHONE" value-ref="saxophone" />
+            </map>
+        </property>
+    </bean>
+</beans>
