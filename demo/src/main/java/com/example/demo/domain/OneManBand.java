@@ -3,7 +3,6 @@ package com.example.demo.domain;
 import com.example.demo.springidol.Instrument;
 import com.example.demo.springidol.Performer;
 
-import java.util.Collection;
 import java.util.Map;
 
 public class OneManBand implements Performer {

@@ -3,7 +3,7 @@ package com.example.demo.domain;
 import com.example.demo.springidol.Poem;
 
 public class PoeticJuggler extends Juggler{
-    private Poem poem;
+    private final Poem poem;
 
     public PoeticJuggler(Poem poem) {
         this.poem = poem;
