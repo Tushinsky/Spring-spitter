@@ -14,6 +14,10 @@ public class Magician implements Performer {
         this.magicBox = magicBox;
     }
 
+    /**
+     * Задаёт магические слова
+     * @param magicWords
+     */
     public void setMagicWords(String magicWords) {
         this.magicWords = magicWords;
     }
