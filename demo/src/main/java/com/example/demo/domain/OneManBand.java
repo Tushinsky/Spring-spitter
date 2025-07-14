@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import com.example.demo.springidol.Instrument;
 import com.example.demo.springidol.Performer;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class OneManBand implements Performer {
 //    }
     private Map<String, Instrument> instruments;
 
+    @Autowired
     public void setInstruments(Map<String, Instrument> instruments) {
         this.instruments = instruments;
     }
