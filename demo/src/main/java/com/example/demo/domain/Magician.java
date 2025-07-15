@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import com.example.demo.springidol.MagicBox;
 import com.example.demo.springidol.Performer;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Magician implements Performer {
     public Magician() {
@@ -10,6 +11,7 @@ public class Magician implements Performer {
     private MagicBox magicBox;
     private String magicWords;
 
+    @Autowired
     public void setMagicBox(MagicBox magicBox) {
         this.magicBox = magicBox;
     }
