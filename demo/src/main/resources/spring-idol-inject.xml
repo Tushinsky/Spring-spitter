@@ -3,11 +3,29 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
     <context:annotation-config />
+    <bean id="audience" class="com.example.demo.domain.Audience" />
+    <aop:config>
+        <!-- ссылка на класс -->
+        <aop:aspect ref="audience">
+            <!-- определение среза множества точек сопряжения -->
+            <aop:pointcut id="performance"
+                          expression="execution( *com.example.demo.springidol.Performer.perform(..))"/>
+            <aop:before pointcut-ref="performance" method="takeSeats"/><!-- используется ссылка на именованный срез -->
+            <aop:before pointcut-ref="performance" method="turnOffCellPhones"/>
+            <aop:after-returning pointcut-ref="performance"  method="applaud"/>
+            <aop:after-throwing pointcut-ref="performance"  method="demandRefund"/>
+        </aop:aspect>
+    </aop:config>
+
     <bean id="duke" class="com.example.demo.domain.Juggler">
         <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
     </bean>
@@ -25,4 +43,5 @@
         <replaced-method name="getContents" replacer="tigerReplacer" /><!--замена метода-->
     </bean>
     <bean id="tigerReplacer" class="com.example.demo.domain.TigerReplacer" />
+
 </beans>
