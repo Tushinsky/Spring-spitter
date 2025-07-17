@@ -30,7 +30,4 @@ public class Instrumentalist implements Performer {
         instrument.play();
     }
 
-    public String screamSong() {
-        return song;
-    }
 }
