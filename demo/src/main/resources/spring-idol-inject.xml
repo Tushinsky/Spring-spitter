@@ -12,20 +12,24 @@
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <context:annotation-config />
-    <bean id="audience" class="com.example.demo.domain.Audience" />
+
     <aop:config>
+
+<!--        <aop:advisor advice-ref="org.springframework.aop.aspectj.AspectJPointcutAdvisor" />-->
         <!-- ссылка на класс -->
         <aop:aspect ref="audience">
             <!-- определение среза множества точек сопряжения -->
             <aop:pointcut id="performance"
-                          expression="execution( *com.example.demo.springidol.Performer.perform(..))"/>
+                          expression="execution(* com.example.demo.springidol.Performer.perform(..))"/>
             <aop:before pointcut-ref="performance" method="takeSeats"/><!-- используется ссылка на именованный срез -->
             <aop:before pointcut-ref="performance" method="turnOffCellPhones"/>
             <aop:after-returning pointcut-ref="performance"  method="applaud"/>
             <aop:after-throwing pointcut-ref="performance"  method="demandRefund"/>
+<!--            <aop:around method="watchPerformance()"/>-->
         </aop:aspect>
     </aop:config>
 
+    <bean id="audience" class="com.example.demo.domain.Audience" />
     <bean id="duke" class="com.example.demo.domain.Juggler">
         <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
     </bean>
