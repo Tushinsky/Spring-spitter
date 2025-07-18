@@ -1,6 +1,6 @@
 package com.example.demo.domain;
 
-import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 
 public class Audience {
     public Audience() {
@@ -22,7 +22,7 @@ public class Audience {
         System.out.println("Booo! We want our money back");// после неудачного выступления
     }
 
-    public void watchPerformance(MethodInvocationProceedingJoinPoint joinPoint) {
+    public void watchPerformance(ProceedingJoinPoint joinPoint) {
 
         try {
             takeSeats();

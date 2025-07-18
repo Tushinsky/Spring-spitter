@@ -11,7 +11,7 @@ public class SpitterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpitterApplication.class, args);
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-idol-inject.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-idol-aop.xml");
 		Performer performer = (Performer) ctx.getBean("garry");
 		performer.perform();
 		Performer poeticPerformer1 = (Performer) ctx.getBean("poeticDuke");

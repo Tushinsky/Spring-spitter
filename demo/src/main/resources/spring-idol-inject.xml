@@ -21,11 +21,11 @@
             <!-- определение среза множества точек сопряжения -->
             <aop:pointcut id="performance"
                           expression="execution(* com.example.demo.springidol.Performer.perform(..))"/>
-            <aop:before pointcut-ref="performance" method="takeSeats"/><!-- используется ссылка на именованный срез -->
-            <aop:before pointcut-ref="performance" method="turnOffCellPhones"/>
-            <aop:after-returning pointcut-ref="performance"  method="applaud"/>
-            <aop:after-throwing pointcut-ref="performance"  method="demandRefund"/>
-<!--            <aop:around method="watchPerformance()"/>-->
+<!--            <aop:before pointcut-ref="performance" method="takeSeats"/>&lt;!&ndash; используется ссылка на именованный срез &ndash;&gt;-->
+<!--            <aop:before pointcut-ref="performance" method="turnOffCellPhones"/>-->
+<!--            <aop:after-returning pointcut-ref="performance"  method="applaud"/>-->
+<!--            <aop:after-throwing pointcut-ref="performance"  method="demandRefund"/>-->
+            <aop:around pointcut-ref="performance" method="watchPerformance"/>
         </aop:aspect>
     </aop:config>
 
@@ -47,5 +47,4 @@
         <replaced-method name="getContents" replacer="tigerReplacer" /><!--замена метода-->
     </bean>
     <bean id="tigerReplacer" class="com.example.demo.domain.TigerReplacer" />
-
 </beans>
