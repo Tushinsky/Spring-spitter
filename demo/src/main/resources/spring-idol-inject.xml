@@ -27,8 +27,13 @@
 <!--            <aop:after-throwing pointcut-ref="performance"  method="demandRefund"/>-->
             <aop:around pointcut-ref="performance" method="watchPerformance"/>
         </aop:aspect>
+        <aop:aspect ref="magician">
+            <aop:pointcut id="thinking"
+                          expression="execution(* com.example.demo.springidol.Thinker.thingOfSimething(String)"/>
+            <aop:before pointcut="thinking" method="interceptThougths" arg-names="thougths"/>
+        </aop:aspect>
     </aop:config>
-
+    <bean id="magician" class="com.example.demo.domain.MindMagician"/>
     <bean id="audience" class="com.example.demo.domain.Audience" />
     <bean id="duke" class="com.example.demo.domain.Juggler">
         <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
@@ -47,4 +52,5 @@
         <replaced-method name="getContents" replacer="tigerReplacer" /><!--замена метода-->
     </bean>
     <bean id="tigerReplacer" class="com.example.demo.domain.TigerReplacer" />
+    <bean id="volunteer" class="com.example.demo.domain.Volunteer" />
 </beans>
