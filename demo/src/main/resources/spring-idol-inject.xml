@@ -26,9 +26,16 @@
 <!--            <aop:after-returning pointcut-ref="performance"  method="applaud"/>-->
 <!--            <aop:after-throwing pointcut-ref="performance"  method="demandRefund"/>-->
             <aop:around pointcut-ref="performance" method="watchPerformance"/>
+            <aop:declare-parents types-matching="com.example.demo.springidol.Performer+"
+                             implement-interface="com.example.demo.springidol.Contestant"
+                            default-impl="com.example.demo.domain.GraciouseContestant"/>
+<!--            или              -->
+<!--            <aop:declare-parents types-matching="com.example.demo.springidol.Performer+"-->
+<!--                                 implement-interface="com.example.demo.springidol.Contestant"-->
+<!--                                 delegate-ref="delegateContestant"/>-->
         </aop:aspect>
     </aop:config>
-
+    <bean id="delegateContestant" class="com.example.demo.domain.GraciouseContestant" />
     <bean id="audience" class="com.example.demo.domain.Audience" />
     <bean id="duke" class="com.example.demo.domain.Juggler">
         <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
