@@ -12,14 +12,15 @@ public class SpitterApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpitterApplication.class, args);
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-idol-aop.xml");
-//		Performer performer = (Performer) ctx.getBean("garry");
-//		performer.perform();
-//		Performer poeticPerformer1 = (Performer) ctx.getBean("poeticDuke");
-//		poeticPerformer1.perform();
-		Volunteer volunteer = (Volunteer) ctx.getBean("volunteer");
-		volunteer.thinkOfSomething("Queen of Hearts");
-		System.out.println(volunteer.getThougths());
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-idol-inject.xml");
+		Performer performer = (Performer) ctx.getBean("garry");
+		performer.perform();
+
+		Performer poeticPerformer1 = (Performer) ctx.getBean("poeticDuke");
+		poeticPerformer1.perform();
+//		Volunteer volunteer = (Volunteer) ctx.getBean("volunteer");
+//		volunteer.thinkOfSomething("Queen of Hearts");
+//		System.out.println(volunteer.getThougths());
 //		Performer oneManBandPerformer1 = (Performer) ctx.getBean("hank");
 //		oneManBandPerformer1.perform();
 	}
