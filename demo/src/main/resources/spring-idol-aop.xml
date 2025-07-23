@@ -34,7 +34,7 @@
     <bean id="duke" class="com.example.demo.domain.Juggler">
         <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
     </bean>
-    <bean id="sonet29" class="com.example.demo.domain.Sonet29" />
+    <bean id="sonet29" class="com.example.demo.domain.Sonet2" />
     <bean id="poeticDuke" class="com.example.demo.domain.PoeticJuggler" autowire="constructor"/>
     <bean id="mindMagician" class="com.example.demo.domain.MindMagician"/>
     <bean id="volunteer" class="com.example.demo.domain.Volunteer"/>
