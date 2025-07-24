@@ -5,6 +5,9 @@ import com.example.demo.springidol.Thinker;
 public class Volunteer implements Thinker {
     private String thougths;
 
+    public Volunteer() {
+    }
+
     public String getThougths() {
         return thougths;
     }
