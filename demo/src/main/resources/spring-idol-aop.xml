@@ -12,7 +12,7 @@
     http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
     <context:annotation-config />
-
+    <aop:aspectj-autoproxy />
     <aop:config>
 
         <!-- ссылка на класс -->
@@ -22,20 +22,32 @@
                             and args(thougths)"/>
             <aop:before pointcut-ref="thinking" method="interceptThougths" arg-names="thougths"/>
         </aop:aspect>
-        <aop:aspect ref="audience">
-            <!-- определение среза множества точек сопряжения -->
-            <aop:pointcut id="performance"
-                          expression="execution(* com.example.demo.springidol.Performer.perform(..))"/>
-            <aop:around pointcut-ref="performance" method="watchPerformance"/>
+<!--        <aop:aspect ref="audience">-->
+<!--            &lt;!&ndash; определение среза множества точек сопряжения &ndash;&gt;-->
+<!--            <aop:pointcut id="performance"-->
+<!--                          expression="execution(* com.example.demo.springidol.Performer.perform(..))"/>-->
+<!--            <aop:around pointcut-ref="performance" method="watchPerformance"/>-->
 
-        </aop:aspect>
+<!--        </aop:aspect>-->
     </aop:config>
-    <bean id="audience" class="com.example.demo.domain.Audience" />
-    <bean id="duke" class="com.example.demo.domain.Juggler">
-        <constructor-arg value="13" /><!-- передача в конструктор класса аргумента -->
-    </bean>
-    <bean id="sonet29" class="com.example.demo.domain.Sonet29" />
-    <bean id="poeticDuke" class="com.example.demo.domain.PoeticJuggler" autowire="constructor"/>
+<!--    <bean id="audience" class="com.example.demo.domain.Audience" />-->
+<!--    <bean id="duke" class="com.example.demo.domain.Juggler">-->
+<!--        <constructor-arg value="13" />&lt;!&ndash; передача в конструктор класса аргумента &ndash;&gt;-->
+<!--    </bean>-->
+<!--    <bean id="sonet29" class="com.example.demo.domain.Sonet29" />-->
+<!--    <bean id="poeticDuke" class="com.example.demo.domain.PoeticJuggler" autowire="constructor"/>-->
     <bean id="mindMagician" class="com.example.demo.domain.MindMagician"/>
     <bean id="volunteer" class="com.example.demo.domain.Volunteer"/>
+    <bean id="criticismEngine" class="com.example.demo.springidol.CriticismEngineImpl">
+        <property name="criticismPool">
+            <list>
+                <value>I'm not being rude, but let was appaling.</value>
+                <value>You may be least talented person in this show.</value>
+                <value>Do everyone a favor and keep your day job.</value>
+            </list>
+        </property>
+    </bean>
+    <bean class="com.example.demo.domain.JudgeAspect" factory-method="aspectOf">
+        <property name="criticismEngine" ref="criticismEngine"/>
+    </bean>
 </beans>

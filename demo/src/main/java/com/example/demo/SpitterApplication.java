@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import com.example.demo.domain.Volunteer;
 import com.example.demo.springidol.Performer;
 import com.example.demo.springidol.Thinker;
 import org.springframework.boot.SpringApplication;
@@ -17,8 +16,8 @@ public class SpitterApplication {
 //		Performer performer = (Performer) ctx.getBean("garry");
 //		performer.perform();
 //
-		Performer poeticPerformer1 = (Performer) ctx.getBean("poeticDuke");
-		poeticPerformer1.perform();
+//		Performer poeticPerformer1 = (Performer) ctx.getBean("poeticDuke");
+//		poeticPerformer1.perform();
 		Thinker volunteer = (Thinker) ctx.getBean("volunteer");
 		volunteer.thinkOfSomething("Queen of Hearts");
 //		System.out.println(volunteer.getThougths());
